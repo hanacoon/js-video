@@ -55,21 +55,38 @@
 	<script> 
 		// You may only change code in the script tag.
 		// You can not change the HTML in the file.
+  var video = document.getElementById("myVideo");
+
 	function playVid() { 
 		console.log("Play Video")
-		// Play the video and update the volume.
+		video.play();
 	} 
 	function pauseVid() { 
 		console.log("Pause Video")
-	  	// Play the video.
+	  video.pause();
 	} 
 	function slowSpeed() {
 		// Slow the vido speed by half and log the new rate to the console. 
+    video.playbackRate = video.playbackRate * 0.5;
+    console.log("Speed is " + video.playbackRate);
 	} 
 	function increaseSpeed() {
 		// Double the video speen and log the new rate to the console. 
+    video.playbackRate = video.playbackRate * 2;
+    console.log("Speed is " + video.playbackRate);
 	} 
 	function mute() { 
+
+    if (video.muted) {
+      video.muted = false;
+      document.getElementById("mute").innerHTML = "Mute";
+      console.log("Unmute");
+    }
+    else {
+      video.muted = true;
+      document.getElementById("mute").innerHTML = "Unmute";
+      console.log("Mute");
+    }
 		// If the video is currently muted: 
 		// 		log "unmute" to the console
 		// 		unmute the video
@@ -83,20 +100,29 @@
 		// Change the volume (0 is off, 100 is full volume, everything else is proportionally in between)
 		// Make sure to update the volume element.
 		// Update the console log with the new volume as well.
+    video.volume = this.value * 0.01;
+    console.log("Volume is " + this.value);
 	}
 	       
 	function gray() { 
 		console.log("In grayscale")
 		// Utilize the existing grayscale class.
+    video.classList.add("grayscale");
 	}
 	function color() {
 		console.log("In color") 
 		// Remove the existing grayscale class.
+    video.classList.remove("grayscale");
 	}
 	// Not sure if we can test for this??? 
 	function random(){
 		// Use setProperty to change the grayscale filder and transform properties of the video.
 		// Log what the new values are to the console.
+    var randomValue = Math.random();
+    video.style.setProperty('filter', 'grayscale(' + randomValue + ')');
+    video.style.setProperty('transform', 'skewX(' + (randomValue * 360) + 'deg)');
+    //video.style.setProperty()
+    console.log(randomValue);
 	}
 	</script> 
 
